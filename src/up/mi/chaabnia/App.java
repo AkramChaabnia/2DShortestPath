@@ -239,41 +239,58 @@ public class App {
 		graph.vertexlist.get(start).timeFromSource = 0;
 		int number_tries = 0;
 
-		// TODO: mettre tous les noeuds du graphe dans la liste des noeuds � visiter:
+		// Mettre tous les noeuds du graphe dans la liste des noeuds à visiter
 		HashSet<Integer> to_visit = new HashSet<Integer>();
+		for (int i = 0; i < numberV; i++) {
+			to_visit.add(i);
+		}
 
 		while (to_visit.contains(end)) {
-			// TODO: trouver le noeud min_v parmis tous les noeuds v ayant la distance
-			// temporaire
-			// graph.vertexlist.get(v).timeFromSource minimale.
+			// Trouver le noeud min_v parmi tous les noeuds v ayant la distance minimale
+			int min_v = -1;
+			double min_dist = Double.MAX_VALUE;
+			for (int v : to_visit) {
+				if (graph.vertexlist.get(v).timeFromSource < min_dist) {
+					min_v = v;
+					min_dist = graph.vertexlist.get(v).timeFromSource;
+				}
+			}
 
-			// On l'enl�ve des noeuds � visiter
-			// get vertex with min dist
+			// On l'enlève des noeuds à visiter
 			to_visit.remove(min_v);
 			number_tries += 1;
 
-			// TODO: pour tous ses voisins, on v�rifie si on est plus rapide en passant par
-			// ce noeud.
-			for (int i = 0; i < graph.vertexlist.get(min_v).adjacencylist.size(); i++) {
-				int to_try = graph.vertexlist.get(min_v).adjacencylist.get(i).destination;
-				// A completer
+			// Pour tous ses voisins, on vérifie si on est plus rapide en passant par ce
+			// noeud
+			for (Edge edge : graph.vertexlist.get(min_v).adjacencylist) {
+				int to_try = edge.destination;
+				double new_dist = graph.vertexlist.get(min_v).timeFromSource + edge.weight;
+				if (new_dist < graph.vertexlist.get(to_try).timeFromSource) {
+					graph.vertexlist.get(to_try).timeFromSource = new_dist;
+					graph.vertexlist.get(to_try).previous = min_v; // Add this line
+				}
 			}
-			// On met � jour l'affichage
+
+			// On met à jour l'affichage
 			try {
 				board.update(graph, min_v);
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				System.out.println("stop");
 			}
-
 		}
 
 		System.out.println("Done! Using Dijkstra:");
-		System.out.println("	Number of nodes explored: " + number_tries);
-		System.out.println("	Total time of the path: " + graph.vertexlist.get(end).timeFromSource);
+		System.out.println("    Number of nodes explored: " + number_tries);
+		System.out.println("    Total time of the path: " + graph.vertexlist.get(end).timeFromSource);
 		LinkedList<Integer> path = new LinkedList<Integer>();
 		path.addFirst(end);
-		// TODO: remplir la liste path avec le chemin
+		// Remplir la liste path avec le chemin
+		int current = end;
+		while (current != start) {
+			current = graph.vertexlist.get(current).previous;
+			path.addFirst(current);
+		}
 
 		board.addPath(graph, path);
 		return path;
