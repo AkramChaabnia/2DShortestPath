@@ -43,10 +43,10 @@ The project consists of the following files:
 
 - `WeightGraph.java`: Defines a weighted graph structure that represents the 2D map.
 - `App.java`: Includes several methods:
-  - A `main` method: Reads the map encoded in a text file, represents it as a graph, and launches the shortest path search with one of the two algorithms¹[1].
+  - A `main` method: Reads the map encoded in a text file, represents it as a graph, and launches the shortest path search with one of the two algorithms.
   - A `Dijkstra` method: Finds the shortest path between the start and end point using the Dijkstra algorithm.
   - An `AStar` method: Finds the shortest path between the start and end point using the A\* algorithm.
-  - A `drawBoard` method and a `Board` class: Manage the display of the map, the running of the algorithms, and the path found²[2].
+  - A `drawBoard` method and a `Board` class: Manage the display of the map, the running of the algorithms, and the path found.
 - `map.txt`: A text file that encodes the map to be used for the shortest path search.
 
 ## 🎈 Evaluation <a name="evaluation"></a>
@@ -77,20 +77,37 @@ In conclusion, the 2DShortestPath project successfully compares the Dijkstra and
 The map is encoded in a text file with the following format (the parts to be replaced are indicated by <>):
 
 ==Metadata==
+
 =Size=
-nlines=<int: The number of lines>⁴[4]
-ncol=<int: The number of columns>⁵[5]
+
+nlines=<int: The number of lines>
+
+ncol=<int: The number of columns>
+
 =Types=
+
 G=<int: The time required to travel vertically or horizontally through a square of this type>
+
 <string: The color of the square of the previous type (usable without code modification: "green", "gray", "blue" and "yellow")>
+
 W=<int: The time required to travel through a square of this type>
+
 <string: The color of the square of the previous type (usable without code modification: "green", "gray", "blue" and "yellow")>
+
 ...
-==Graph== <string: A succession of ncols letters, according to the types defined previously.>⁶[6]
+
+==Graph==
+
+<string: A succession of ncols letters, according to the types defined previously.>⁶[6]
+
 <string: A succession of ncols letters, according to the types defined previously.>
+
 ... (nlines times)
+
 ==Path==
+
 Start=<int,int: the coordinates (line, column) of the starting point>
+
 Finish=<int,int: the coordinates (line, column) of the arrival point>
 
 You can define your own maps by modifying the one provided.
@@ -128,7 +145,7 @@ To use the project, you can follow these steps:
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
 - This project was inspired by the advanced algorithms module at Université de Paris Cité (IF05X040 Algorithmique avancée).
-- The code skeleton and the map format were provided by the module instructor, Professor Nicolas Loménie.
+- The code skeleton and the map format were provided by the module instructor, <u><b>Professor Nicolas Loménie</b></u>.
 
 ## 📞 Contact <a name = "contact"></a>
 
