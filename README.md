@@ -1,37 +1,55 @@
 <p align="center">
   <a href="" rel="noopener">
- <img src="https://i.imgur.com/AZ2iWek.png" alt="Project logo"></a>
+ <img src="" alt="Project logo"></a>
 </p>
 <h3 align="center">2DShortestPath</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![GitHub Issues](https://img.shields.io/github/issues/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/pulls)
+[![University](https://img.shields.io/badge/University-Paris%20Cité%20Université-%23A6192E)](https://u-paris.fr)
 
 </div>
-2DShortestPath is a graph theory project for the advanced algorithms module at Université de Paris Cité (IF05X040 Algorithmique avancée). It compares the Dijkstra and A* algorithms for finding the shortest path between two vertices on a 2D map.
-## Objective
 
-## The goal of this exercise is to find the shortest path on a 2D map. The provided code includes the structure for implementing the Dijkstra and A\* algorithms, as well as the methods for running the algorithms and displaying the map. By completing the code, i was be able to implement and compare the performances of the two algorithms on different maps.
+---
 
-<p align="center"> 2DShortestPath is a graph theory project that compares the Dijkstra and A* algorithms for finding the shortest path between two vertices, or in this context, on a 2D map. The project includes a WeightedGraph class to define the structure of the weighted graph. It also includes an App class that contains the methods to define the Dijkstra and A* algorithms, drawBoard and Board for displaying the map, running the algorithms, and finding the path. The main method reads the map encoded in a text file, represents it as a graph, and performs the shortest path search using one of the two algorithms.
+<p align="center"> 2DShortestPath is a Java project that compares the Dijkstra and A* algorithms for finding the shortest path between two points on a 2D map. It was developed as part of the advanced algorithms module at Université de Paris Cité (IF05X040 Algorithmique avancée).
     <br> 
 </p>
 
-## Code Structure
+## 📝 Table of Contents
 
-A code skeleton has been provided, which includes:
+- [About](#about)
+- [Code Structure](#code_structure)
+- [Evaluation](#evaluation)
+- [Conclusion](#conclusion)
+- [Map Format](#map_format)
+- [Getting Started](#getting_started)
+- [Usage](#usage)
+- [Built Using](#built_using)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgement)
+- [Contact](#contact)
 
-- `WeightGraph.java`: Defines a weighted graph structure.
+## 🧐 About <a name = "about"></a>
+
+The goal of this project is to implement and compare the Dijkstra and A\* algorithms for finding the shortest path on a 2D map. The project includes a weighted graph structure, methods for running the algorithms and displaying the map, and different maps encoded in text files. The project also evaluates the performance of the two algorithms and reflects on their real use cases.
+
+## 🚀 Code Structure <a name = "code_structure"></a>
+
+The project consists of the following files:
+
+- `WeightGraph.java`: Defines a weighted graph structure that represents the 2D map.
 - `App.java`: Includes several methods:
-  - A `main` method: You have read the map encoded in a text file, represented it as a graph (using the given structure), and launched the shortest path search with one of the two completed algorithms.
-  - A `Dijkstra` and an `AStar` method: These have found the path between the start and end vertex from the graph.
-  - A `drawBoard` method and a `Board` class: These manage the display of the map, the running of the algorithms, and the path found.
+  - A `main` method: Reads the map encoded in a text file, represents it as a graph, and launches the shortest path search with one of the two algorithms¹[1].
+  - A `Dijkstra` method: Finds the shortest path between the start and end point using the Dijkstra algorithm.
+  - An `AStar` method: Finds the shortest path between the start and end point using the A\* algorithm.
+  - A `drawBoard` method and a `Board` class: Manage the display of the map, the running of the algorithms, and the path found²[2].
+- `map.txt`: A text file that encodes the map to be used for the shortest path search.
 
-## Evaluation
+## 🎈 Evaluation <a name="evaluation"></a>
 
 After completing the code, I have evaluated and compared the performances of Dijkstra and A\* (proposing one or more heuristics) on different (relevant) maps.
 
@@ -50,56 +68,74 @@ Reflection on Real Use Cases:
 - Dijkstra algorithm: Dijkstra is suitable for scenarios where finding the absolute shortest path is crucial, regardless of the computational cost.
 - A* algorithm: A* is more suitable for scenarios where finding an efficient path is important, and the computational cost can be reduced by using appropriate heuristics.
 
-## Map Format
-
-The graph was provided in the form of a text file. The format to respect is as follows:
-
-- `==Metadata==`
-- `=Size=`
-  - `nlines=<int : The number of lines>`
-  - `ncol=<int: The number of columns>`
-- `=Types=`
-  - `G=<int: The time needed to traverse vertically or horizontally a box of this type>`
-  - `<string : The color of the box of the previous type (can be used without code modification: "green", "gray", "blue" and "yellow")>`
-  - `W=<int: The time needed to traverse a box of this type>`
-  - `<string : The color of the box of the previous type (can be used without code modification: "green", "gray", "blue" and "yellow")>`
-
-## Conclusion
+## 📄 Conclusion <a name="conclusion"></a>
 
 In conclusion, the 2DShortestPath project successfully compares the Dijkstra and A* algorithms for finding the shortest path on a 2D map. The A* algorithm outperforms Dijkstra in terms of performance, especially on larger graphs, thanks to its ability to prioritize paths using heuristics. The choice of heuristics can greatly impact the performance of the A* algorithm, leading to different results in terms of path length and computation time. Overall, both algorithms have their use cases, with Dijkstra being suitable for scenarios where finding the absolute shortest path is crucial, and A* being more suitable for scenarios where finding an efficient path is important while considering computational cost.
 
-## Installation
+## 📄 Map Format <a name="map_format"></a>
 
-To install the software, you will need the following:
+The map is encoded in a text file with the following format (the parts to be replaced are indicated by <>):
 
-- Java Development Kit (JDK)
-- Eclipse IDE or Visual Studio Code
+==Metadata==
+=Size=
+nlines=<int: The number of lines>⁴[4]
+ncol=<int: The number of columns>⁵[5]
+=Types=
+G=<int: The time required to travel vertically or horizontally through a square of this type>
+<string: The color of the square of the previous type (usable without code modification: "green", "gray", "blue" and "yellow")>
+W=<int: The time required to travel through a square of this type>
+<string: The color of the square of the previous type (usable without code modification: "green", "gray", "blue" and "yellow")>
+...
+==Graph== <string: A succession of ncols letters, according to the types defined previously.>⁶[6]
+<string: A succession of ncols letters, according to the types defined previously.>
+... (nlines times)
+==Path==
+Start=<int,int: the coordinates (line, column) of the starting point>
+Finish=<int,int: the coordinates (line, column) of the arrival point>
 
-Follow these steps to install the software:
+You can define your own maps by modifying the one provided.
 
-1. Download and install the latest version of JDK from the official Oracle website.
-2. Download and install Eclipse IDE or Visual Studio Code from their respective official websites.
-3. Clone the repository or download the project files.
-4. Open the project in your chosen IDE.
-5. Build and run the `App.java` file to start the program.
+## 🏁 Getting Started <a name = "getting_started"></a>
 
-## Usage
+These instructions will guide you through the installation and execution of the project.
 
-To use the project, follow these steps:
+### Prerequisites
 
-1. Clone the repository.
-2. Open the project in your preferred IDE.
-3. Run the `App.java` file.
-4. Follow the on-screen instructions to input the path to the text file containing the map.
-5. The program will display the shortest path between the start and end vertices using either the Dijkstra or A\* algorithm.
+To run the project, you need to have Java installed on your machine. You can download Java from [here](https://www.java.com/en/download/).
 
-## Technology Stack <a name = "tech_stack"></a>
+### Installing
 
-- Java
-- Eclipse IDE
-- Visual Studio Code
+To install the project, you can clone the repository or download the zip file from GitHub. Then, you can use your preferred IDE or the command line to compile and run the project.
 
-## Authors <a name = "authors"></a>
+## 🎈 Usage <a name="usage"></a>
 
-- Sylvain LOBRY - Univesite de Paris Cite (IF05X040 Algorithmique avancee)
-- Akram CHAABNIA - [@AkramChaabnia](https://github.com/AkramChaabnia)
+To use the project, you can follow these steps:
+
+- Choose or create a map file that follows the format described above.
+- In the `main` method of the `App` class, specify the name of the map file and the algorithm to use (Dijkstra or AStar).
+- Run the `App` class and observe the output. The output will show the map, the path found, and the performance metrics of the algorithm.
+- You can change the map file or the algorithm and run the project again to compare the results.
+
+## ⛏️ Built Using <a name = "built_using"></a>
+
+- [Java](https://www.java.com/) - Programming Language
+
+## ✍️ Authors <a name = "authors"></a>
+
+- Sylvain LOBRY - Universite de Paris Cite (IF05X040 Algorithmique avancee) - Idea & Initial work
+- [@AkramChaabnia](https://github.com/AkramChaabnia) - Completion & Finalization
+
+## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+
+- This project was inspired by the advanced algorithms module at Université de Paris Cité (IF05X040 Algorithmique avancée).
+- The code skeleton and the map format were provided by the module instructor, Professor Nicolas Loménie.
+
+## 📞 Contact <a name = "contact"></a>
+
+If you have any questions, suggestions, or just want to connect, here's how you can reach me:
+
+- Email: akram.chaabnia25@gmail.com
+- LinkedIn: [Akram CHAABNIA](https://www.linkedin.com/in/akram-chaabnia-43b7941b0/)
+- GitHub: [@AkramChaabnia](https://github.com/AkramChaabnia)
+
+Please feel free to contact me!
