@@ -30,6 +30,15 @@ public class WeightedGraph {
         LinkedList<Edge> adjacencylist;
         int num;
 
+        public Vertex() {
+            this.indivTime = Double.POSITIVE_INFINITY;
+            this.timeFromSource = Double.POSITIVE_INFINITY;
+            this.heuristic = -1;
+            this.prev = null;
+            this.adjacencylist = new LinkedList<Edge>();
+            this.num = -1;
+        }
+
         public Vertex(int num) {
             this.indivTime = Double.POSITIVE_INFINITY;
             this.timeFromSource = Double.POSITIVE_INFINITY;
