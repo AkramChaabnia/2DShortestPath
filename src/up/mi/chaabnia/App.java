@@ -195,6 +195,7 @@ public class App {
 		// graph:
 		for (Vertex v : graph.vertexlist) {
 			v.heuristic = Math.abs(v.num / ncols - end / ncols) + Math.abs(v.num % ncols - end % ncols);
+			System.out.println("Setting heuristic for vertex " + v.num + ": " + v.heuristic);
 		}
 
 		while (to_visit.contains(end)) {
@@ -211,6 +212,8 @@ public class App {
 				}
 			}
 
+			System.out.println("Min vertex: " + min_v + ", Min distance: " + min_distance);
+
 			// Remove it from the nodes to visit
 			to_visit.remove(min_v);
 			number_tries += 1;
@@ -221,6 +224,7 @@ public class App {
 				double newTimeFromSource = graph.vertexlist.get(min_v).timeFromSource
 						+ graph.vertexlist.get(min_v).adjacencylist.get(i).weight;
 				if (newTimeFromSource < graph.vertexlist.get(to_try).timeFromSource) {
+					System.out.println("Updating timeFromSource for vertex " + to_try);
 					graph.vertexlist.get(to_try).timeFromSource = newTimeFromSource;
 					graph.vertexlist.get(to_try).prev = new Vertex();
 					graph.vertexlist.get(to_try).prev.num = min_v;
@@ -266,15 +270,14 @@ public class App {
 	// numberV: le nombre de cases dans la carte
 	// board: l'affichage
 	// retourne une liste d'entiers correspondant au chemin.
-	private static LinkedList<Integer> Dijkstra(Graph graph, int start, int end,
-			int numberV, Board board) {
+	private static LinkedList<Integer> Dijkstra(Graph graph, int start, int end, int numberV, Board board) {
 		System.out.println("Start node: " + start); // Print the start node
 		System.out.println("End node: " + end); // Print the end node
 
 		HashSet<Integer> to_visit = new HashSet<Integer>();
 
 		// Initialize all distances as INFINITE and add all vertices to the set of nodes
-		// // to visit
+		// to visit
 		for (int i = 0; i < numberV; i++) {
 			graph.vertexlist.get(i).timeFromSource = Double.MAX_VALUE;
 			to_visit.add(i);
@@ -297,6 +300,11 @@ public class App {
 				}
 			}
 
+			// Check if the end node has been reached
+			if (min_v == end) {
+				break; // Exit the loop when the end node is reached
+			}
+
 			to_visit.remove(min_v);
 			number_tries += 1;
 
@@ -309,7 +317,7 @@ public class App {
 				double new_dist = graph.vertexlist.get(min_v).timeFromSource + edge.weight;
 
 				// Print the weight of the edge
-				System.out.println("Processing edge from " + min_v + " to " + to_try + " with	weight " + edge.weight);
+				System.out.println("Processing edge from " + min_v + " to " + to_try + " with weight " + edge.weight);
 
 				if (new_dist < graph.vertexlist.get(to_try).timeFromSource) {
 					graph.vertexlist.get(to_try).timeFromSource = new_dist;
@@ -325,10 +333,15 @@ public class App {
 			}
 		}
 
+		// Check if the end node is reached
+		if (graph.vertexlist.get(end).timeFromSource == Double.MAX_VALUE) {
+			System.out.println("No path found from start to end node.");
+			return new LinkedList<>(); // Return an empty path
+		}
+
 		System.out.println("Done! Using Dijkstra:");
 		System.out.println(" Number of nodes explored: " + number_tries);
-		System.out.println(" Total time of the path: " +
-				graph.vertexlist.get(end).timeFromSource);
+		System.out.println(" Total time of the path: " + graph.vertexlist.get(end).timeFromSource);
 
 		// Construct the shortest path from the end vertex to the start vertex
 		LinkedList<Integer> path = new LinkedList<Integer>();
