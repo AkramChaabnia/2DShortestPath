@@ -57,19 +57,19 @@ After completing the code, I have evaluated and compared the performances of Dij
 
 ### Dijkstra Evaluation
 
-- Number of nodes explored: 1000
-- Total nodes of the path: 63
-- Total time of the path: 1078.0
+- Number of nodes explored: 5000
+- Total nodes of the path: 207
+- Total time of the path: 273.0
 
-![Dijkstra Screenshot](https://i.imgur.com/Lh8GAVd.png)
+![Dijkstra Screenshot](https://i.imgur.com/WQVGfhD.png)
 
 ### A\* Evaluation
 
-- Number of nodes explored: 874
-- Total nodes of the path: 69
-- Total time of the path: 1089.0
+- Number of nodes explored: 4079
+- Total nodes of the path: 215
+- Total time of the path: 286.0
 
-![A* Screenshot](https://i.imgur.com/yGmndJM.png)
+![A* Screenshot](https://i.imgur.com/Adis2Ns.png)
 
 Evaluation:
 
