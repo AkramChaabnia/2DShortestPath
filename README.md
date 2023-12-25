@@ -6,10 +6,12 @@
 <h3 align="center">2DShortestPath</h3>
 
 <div align="center">
-  [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-  [![GitHub Issues](https://img.shields.io/github/issues/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/issues)
-  [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/pulls)
-  [![University](https://img.shields.io/badge/University-Paris%20Cité%20Université-%23A6192E)](https://u-paris.fr)
+
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![GitHub Issues](https://img.shields.io/github/issues/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/pulls)
+[![University](https://img.shields.io/badge/University-Paris%20Cité%20Université-%23A6192E)](https://u-paris.fr)
+
 </div>
 
 ---
