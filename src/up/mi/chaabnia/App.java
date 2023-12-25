@@ -9,13 +9,10 @@ import up.mi.chaabnia.WeightedGraph.Vertex;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.HashSet;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.*;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -270,81 +267,64 @@ public class App {
 	// numberV: le nombre de cases dans la carte
 	// board: l'affichage
 	// retourne une liste d'entiers correspondant au chemin.
+
 	private static LinkedList<Integer> Dijkstra(Graph graph, int start, int end, int numberV, Board board) {
 		System.out.println("Start node: " + start); // Print the start node
 		System.out.println("End node: " + end); // Print the end node
 
-		HashSet<Integer> to_visit = new HashSet<Integer>();
+		PriorityQueue<Vertex> to_visit = new PriorityQueue<>(numberV, Comparator.comparingDouble(v -> v.timeFromSource));
 
-		// Initialize all distances as INFINITE and add all vertices to the set of nodes
-		// to visit
 		for (int i = 0; i < numberV; i++) {
 			graph.vertexlist.get(i).timeFromSource = Double.MAX_VALUE;
-			to_visit.add(i);
+			to_visit.add(graph.vertexlist.get(i));
 		}
 
-		// Distance of source vertex from itself is always 0
 		graph.vertexlist.get(start).timeFromSource = 0;
 
 		int number_tries = 0;
 
 		while (!to_visit.isEmpty()) {
-			int min_v = -1;
-			double min_dist = Double.MAX_VALUE;
-
-			// Find the vertex with the minimum timeFromSource among the nodes to visit
-			for (int v : to_visit) {
-				if (graph.vertexlist.get(v).timeFromSource < min_dist) {
-					min_v = v;
-					min_dist = graph.vertexlist.get(v).timeFromSource;
-				}
+			Vertex min_v = to_visit.poll();
+			if (min_v == null) {
+				System.out.println("No minimum vertex found!");
+				break;
 			}
 
-			// Check if the end node has been reached
-			if (min_v == end) {
-				break; // Exit the loop when the end node is reached
-			}
-
-			to_visit.remove(min_v);
 			number_tries += 1;
 
-			// Print the current node being explored
-			System.out.println("Exploring node: " + min_v);
+			System.out.println("Exploring node: " + min_v.num);
 
-			// Update the timeFromSource and prev fields of the neighboring vertices
-			for (Edge edge : graph.vertexlist.get(min_v).adjacencylist) {
+			for (Edge edge : min_v.adjacencylist) {
 				int to_try = edge.destination;
-				double new_dist = graph.vertexlist.get(min_v).timeFromSource + edge.weight;
+				double new_dist = min_v.timeFromSource + edge.weight;
 
-				// Print the weight of the edge
-				System.out.println("Processing edge from " + min_v + " to " + to_try + " with weight " + edge.weight);
+				System.out.println("Processing edge from " + min_v.num + " to " + to_try + " with weight " + edge.weight);
 
 				if (new_dist < graph.vertexlist.get(to_try).timeFromSource) {
 					graph.vertexlist.get(to_try).timeFromSource = new_dist;
-					graph.vertexlist.get(to_try).prev = graph.vertexlist.get(min_v);
+					graph.vertexlist.get(to_try).prev = min_v;
+
+					// Remove and re-add the updated node to reflect the new distance
+					to_visit.remove(graph.vertexlist.get(to_try));
+					to_visit.add(graph.vertexlist.get(to_try));
+
+					System.out.println("Updated distance for node " + to_try + ": " + new_dist);
 				}
 			}
 
 			try {
-				board.update(graph, min_v);
+				board.update(graph, min_v.num);
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				System.out.println("stop");
 			}
 		}
 
-		// Check if the end node is reached
-		if (graph.vertexlist.get(end).timeFromSource == Double.MAX_VALUE) {
-			System.out.println("No path found from start to end node.");
-			return new LinkedList<>(); // Return an empty path
-		}
-
 		System.out.println("Done! Using Dijkstra:");
 		System.out.println(" Number of nodes explored: " + number_tries);
 		System.out.println(" Total time of the path: " + graph.vertexlist.get(end).timeFromSource);
 
-		// Construct the shortest path from the end vertex to the start vertex
-		LinkedList<Integer> path = new LinkedList<Integer>();
+		LinkedList<Integer> path = new LinkedList<>();
 		path.addFirst(end);
 		int current = end;
 		while (current != start) {
