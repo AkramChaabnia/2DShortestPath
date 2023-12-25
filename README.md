@@ -1,22 +1,21 @@
 <p align="center">
   <a href="" rel="noopener">
- <img src="" alt="Project logo"></a>
+    <img src="" alt="Project logo">
+  </a>
 </p>
 <h3 align="center">2DShortestPath</h3>
 
 <div align="center">
-
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/pulls)
-[![University](https://img.shields.io/badge/University-Paris%20Cité%20Université-%23A6192E)](https://u-paris.fr)
-
+  [![Status](https://img.shields.io/badge/status-active-success.svg)]()
+  [![GitHub Issues](https://img.shields.io/github/issues/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/issues)
+  [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/AkramChaabnia/2DShortestPath.svg)](https://github.com/AkramChaabnia/2DShortestPath/pulls)
+  [![University](https://img.shields.io/badge/University-Paris%20Cité%20Université-%23A6192E)](https://u-paris.fr)
 </div>
 
 ---
 
 <p align="center"> 2DShortestPath is a Java project that compares the Dijkstra and A* algorithms for finding the shortest path between two points on a 2D map. It was developed as part of the advanced algorithms module at Université de Paris Cité (IF05X040 Algorithmique avancée).
-    <br> 
+  <br> 
 </p>
 
 ## 📝 Table of Contents
@@ -48,10 +47,29 @@ The project consists of the following files:
   - An `AStar` method: Finds the shortest path between the start and end point using the A\* algorithm.
   - A `drawBoard` method and a `Board` class: Manage the display of the map, the running of the algorithms, and the path found.
 - `map.txt`: A text file that encodes the map to be used for the shortest path search.
+- `out.txt`: Contains the result which is the path from start to end node.
 
 ## 🎈 Evaluation <a name="evaluation"></a>
 
 After completing the code, I have evaluated and compared the performances of Dijkstra and A\* (proposing one or more heuristics) on different (relevant) maps.
+
+### Dijkstra Evaluation
+
+- Number of nodes explored: 1000
+- Total nodes of the path: 63
+- Total time of the path: 1078.0
+
+Placeholder for Dijkstra screenshot: [Add Dijkstra Screenshot Here]
+![Dijkstra Screenshot](https://imgur.com/Lh8GAVd)
+
+### A\* Evaluation
+
+- Number of nodes explored: 874
+- Total nodes of the path: 69
+- Total time of the path: 1089.0
+
+Placeholder for A* screenshot: [Add A* Screenshot Here]
+![A* Screenshot](https://imgur.com/yGmndJM)
 
 Evaluation:
 
