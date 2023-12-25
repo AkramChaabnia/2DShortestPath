@@ -98,7 +98,7 @@ W=<int: The time required to travel through a square of this type>
 
 ==Graph==
 
-<string: A succession of ncols letters, according to the types defined previously.>⁶[6]
+<string: A succession of ncols letters, according to the types defined previously.>
 
 <string: A succession of ncols letters, according to the types defined previously.>
 

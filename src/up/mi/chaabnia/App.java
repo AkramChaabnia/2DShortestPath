@@ -5,6 +5,7 @@ package up.mi.chaabnia;
 
 import up.mi.chaabnia.WeightedGraph.Edge;
 import up.mi.chaabnia.WeightedGraph.Graph;
+import up.mi.chaabnia.WeightedGraph.Vertex;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -180,53 +181,72 @@ public class App {
 	// numberV: le nombre de cases dans la carte
 	// board: l'affichage
 	// retourne une liste d'entiers correspondant au chemin.
-	private static LinkedList<Integer> AStar(Graph graph, int start, int end, int ncols, int numberV, Board board) {
-		graph.vertexlist.get(start).timeFromSource = 0;
-		int number_tries = 0;
+	// private static LinkedList<Integer> AStar(Graph graph, int start, int end, int
+	// ncols, int numberV, Board board) {
+	// graph.vertexlist.get(start).timeFromSource = 0;
+	// int number_tries = 0;
 
-		// TODO: mettre tous les noeuds du graphe dans la liste des noeuds � visiter:
-		HashSet<Integer> to_visit = new HashSet<Integer>();
+	// // TODO: mettre tous les noeuds du graphe dans la liste des noeuds à visiter:
+	// HashSet<Integer> to_visit = new HashSet<Integer>();
+	// for (int i = 0; i < graph.vertexlist.size(); i++) {
+	// to_visit.add(i);
+	// }
 
-		// TODO: Remplir l'attribut graph.vertexlist.get(v).heuristic pour tous les
-		// noeuds v du graphe:
+	// // TODO: Remplir l'attribut graph.vertexlist.get(v).heuristic pour tous les
+	// // noeuds v du graphe:
 
-		while (to_visit.contains(end)) {
-			// TODO: trouver le noeud min_v parmis tous les noeuds v ayant la distance
-			// temporaire
-			// (graph.vertexlist.get(v).timeFromSource + heuristic) minimale.
+	// while (to_visit.contains(end)) {
+	// // TODO: trouver le noeud min_v parmi tous les noeuds v ayant la distance
+	// // temporaire (graph.vertexlist.get(v).timeFromSource + heuristic) minimale.
+	// int min_v = -1;
+	// double min_distance = Double.MAX_VALUE;
+	// for (int v : to_visit) {
+	// double distance = graph.vertexlist.get(v).timeFromSource +
+	// graph.vertexlist.get(v).heuristic;
+	// if (distance < min_distance) {
+	// min_distance = distance;
+	// min_v = v;
+	// }
+	// }
 
-			// On l'enl�ve des noeuds � visiter
-			to_visit.remove(min_v);
-			number_tries += 1;
+	// // On l'enlève des noeuds à visiter
+	// to_visit.remove(min_v);
+	// number_tries += 1;
 
-			// TODO: pour tous ses voisins, on v�rifie si on est plus rapide en passant par
-			// ce noeud.
-			for (int i = 0; i < graph.vertexlist.get(min_v).adjacencylist.size(); i++) {
-				int to_try = graph.vertexlist.get(min_v).adjacencylist.get(i).destination;
-				// A completer
-			}
-			// On met � jour l'affichage
-			try {
-				board.update(graph, min_v);
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				System.out.println("stop");
-			}
+	// // TODO: pour tous ses voisins, on vérifie si on est plus rapide en passant
+	// par
+	// // ce noeud.
+	// for (int i = 0; i < graph.vertexlist.get(min_v).adjacencylist.size(); i++) {
+	// int to_try = graph.vertexlist.get(min_v).adjacencylist.get(i).destination;
+	// double newTimeFromSource = graph.vertexlist.get(min_v).timeFromSource
+	// + graph.vertexlist.get(min_v).adjacencylist.get(i).weight;
+	// if (newTimeFromSource < graph.vertexlist.get(to_try).timeFromSource) {
+	// graph.vertexlist.get(to_try).timeFromSource = newTimeFromSource;
+	// graph.vertexlist.get(to_try).prev = min_v;
+	// }
+	// }
 
-		}
+	// // On met à jour l'affichage
+	// try {
+	// board.update(graph, min_v);
+	// Thread.sleep(10);
+	// } catch (InterruptedException e) {
+	// System.out.println("stop");
+	// }
+	// }
 
-		System.out.println("Done! Using A*:");
-		System.out.println("	Number of nodes explored: " + number_tries);
-		System.out.println("	Total time of the path: " + graph.vertexlist.get(end).timeFromSource);
-		LinkedList<Integer> path = new LinkedList<Integer>();
-		path.addFirst(end);
-		// TODO: remplir la liste path avec le chemin
+	// System.out.println("Done! Using A*:");
+	// System.out.println(" Number of nodes explored: " + number_tries);
+	// System.out.println(" Total time of the path: " +
+	// graph.vertexlist.get(end).timeFromSource);
+	// LinkedList<Integer> path = new LinkedList<Integer>();
+	// path.addFirst(end);
+	// // TODO: remplir la liste path avec le chemin
 
-		board.addPath(graph, path);
-		return path;
-	}
+	// board.addPath(graph, path);
+	// return path;
+	// }
 
-	// M�thode Dijkstra
 	// graph: le graphe repr�sentant la carte
 	// start: un entier repr�sentant la case de d�part
 	// (entier unique correspondant � la case obtenue dans le sens de la lecture)
@@ -236,19 +256,28 @@ public class App {
 	// board: l'affichage
 	// retourne une liste d'entiers correspondant au chemin.
 	private static LinkedList<Integer> Dijkstra(Graph graph, int start, int end, int numberV, Board board) {
-		graph.vertexlist.get(start).timeFromSource = 0;
-		int number_tries = 0;
+		System.out.println("Start node: " + start); // Print the start node
+		System.out.println("End node: " + end); // Print the end node
 
-		// Mettre tous les noeuds du graphe dans la liste des noeuds à visiter
 		HashSet<Integer> to_visit = new HashSet<Integer>();
+
+		// Initialize all distances as INFINITE and add all vertices to the set of nodes
+		// to visit
 		for (int i = 0; i < numberV; i++) {
+			graph.vertexlist.get(i).timeFromSource = Double.MAX_VALUE;
 			to_visit.add(i);
 		}
 
-		while (to_visit.contains(end)) {
-			// Trouver le noeud min_v parmi tous les noeuds v ayant la distance minimale
+		// Distance of source vertex from itself is always 0
+		graph.vertexlist.get(start).timeFromSource = 0;
+
+		int number_tries = 0;
+
+		while (!to_visit.isEmpty()) {
 			int min_v = -1;
 			double min_dist = Double.MAX_VALUE;
+
+			// Find the vertex with the minimum timeFromSource among the nodes to visit
 			for (int v : to_visit) {
 				if (graph.vertexlist.get(v).timeFromSource < min_dist) {
 					min_v = v;
@@ -256,22 +285,26 @@ public class App {
 				}
 			}
 
-			// On l'enlève des noeuds à visiter
 			to_visit.remove(min_v);
 			number_tries += 1;
 
-			// Pour tous ses voisins, on vérifie si on est plus rapide en passant par ce
-			// noeud
+			// Print the current node being explored
+			System.out.println("Exploring node: " + min_v);
+
+			// Update the timeFromSource and prev fields of the neighboring vertices
 			for (Edge edge : graph.vertexlist.get(min_v).adjacencylist) {
 				int to_try = edge.destination;
 				double new_dist = graph.vertexlist.get(min_v).timeFromSource + edge.weight;
+
+				// Print the weight of the edge
+				System.out.println("Processing edge from " + min_v + " to " + to_try + " with weight " + edge.weight);
+
 				if (new_dist < graph.vertexlist.get(to_try).timeFromSource) {
 					graph.vertexlist.get(to_try).timeFromSource = new_dist;
-					graph.vertexlist.get(to_try).previous = min_v; // Add this line
+					graph.vertexlist.get(to_try).prev = graph.vertexlist.get(min_v);
 				}
 			}
 
-			// On met à jour l'affichage
 			try {
 				board.update(graph, min_v);
 				Thread.sleep(10);
@@ -281,15 +314,22 @@ public class App {
 		}
 
 		System.out.println("Done! Using Dijkstra:");
-		System.out.println("    Number of nodes explored: " + number_tries);
-		System.out.println("    Total time of the path: " + graph.vertexlist.get(end).timeFromSource);
+		System.out.println(" Number of nodes explored: " + number_tries);
+		System.out.println(" Total time of the path: " + graph.vertexlist.get(end).timeFromSource);
+
+		// Construct the shortest path from the end vertex to the start vertex
 		LinkedList<Integer> path = new LinkedList<Integer>();
 		path.addFirst(end);
-		// Remplir la liste path avec le chemin
 		int current = end;
 		while (current != start) {
-			current = graph.vertexlist.get(current).previous;
-			path.addFirst(current);
+			Vertex prevVertex = graph.vertexlist.get(current).prev;
+			if (prevVertex != null) {
+				current = prevVertex.num;
+				path.addFirst(current);
+			} else {
+				System.out.println("No path found from start to end node.");
+				break;
+			}
 		}
 
 		board.addPath(graph, path);
@@ -407,11 +447,14 @@ public class App {
 			// On obtient les noeuds de d�part et d'arriv�
 			data = myReader.nextLine();
 			data = myReader.nextLine();
-			int startV = Integer.parseInt(data.split("=")[1].split(",")[0]) * ncols
-					+ Integer.parseInt(data.split("=")[1].split(",")[1]);
+			int startRow = Integer.parseInt(data.split("=")[1].split(",")[0]);
+			int startCol = Integer.parseInt(data.split("=")[1].split(",")[1]);
+			int startV = startRow * ncols + startCol;
+
 			data = myReader.nextLine();
-			int endV = Integer.parseInt(data.split("=")[1].split(",")[0]) * ncols
-					+ Integer.parseInt(data.split("=")[1].split(",")[1]);
+			int endRow = Integer.parseInt(data.split("=")[1].split(",")[0]);
+			int endCol = Integer.parseInt(data.split("=")[1].split(",")[1]);
+			int endV = endRow * ncols + endCol;
 
 			// A changer pour avoir un affichage plus ou moins grand
 			int pixelSize = 10;
@@ -425,46 +468,57 @@ public class App {
 				System.out.println("stop");
 			}
 
-			// TODO: laisser le choix entre Dijkstra et A*
-			System.out.println("Choose the algorithm: ");
-			System.out.println("1. Dijkstra");
-			System.out.println("2. A*");
-
-			int choice = myReader.nextInt();
-			LinkedList<Integer> path = null;
-
-			if (choice == 1) {
-				// Call Dijkstra algorithm
-				path = Dijkstra(graph, startV, endV, nlines, board);
-			} else if (choice == 2) {
-				// Call A* algorithm
-				path = AStar(graph, startV, endV, nlines, ncols, board);
+			if (startRow < 0 || startRow >= nlines || startCol < 0 || startCol >= ncols ||
+					endRow < 0 || endRow >= nlines || endCol < 0 || endCol >= ncols) {
+				System.out.println("Invalid start or end node coordinates!");
+				// Handle the error condition here
 			} else {
-				System.out.println("Invalid choice!");
-			}
-			myReader.close();
 
-			// �criture du chemin dans un fichier de sortie
-			try {
-				File file = new File("out.txt");
-				if (!file.exists()) {
-					file.createNewFile();
+				// TODO: laisser le choix entre Dijkstra et A*
+				System.out.println("Choose the algorithm: ");
+				System.out.println("1. Dijkstra");
+				System.out.println("2. A*");
+
+				int choice = 1;
+				// if (myReader.hasNextInt()) {
+				// choice = myReader.nextInt();
+				// } else {
+				// System.out.println("Invalid input. Please enter an integer.");
+				// }
+				LinkedList<Integer> path = null;
+
+				if (choice == 1) {
+					// Call Dijkstra algorithm
+					path = Dijkstra(graph, startV, endV, nlines, board);
+				} else if (choice == 2) {
+					// Call A* algorithm
+					// path = AStar(graph, startV, endV, nlines, ncols, board);
+				} else {
+					System.out.println("Invalid choice!");
 				}
-				FileWriter fw = new FileWriter(file.getAbsoluteFile());
-				BufferedWriter bw = new BufferedWriter(fw);
+				myReader.close();
 
-				for (int i : path) {
-					bw.write(String.valueOf(i));
-					bw.write('\n');
+				// �criture du chemin dans un fichier de sortie
+				try {
+					File file = new File("out.txt");
+					if (!file.exists()) {
+						file.createNewFile();
+					}
+					FileWriter fw = new FileWriter(file.getAbsoluteFile());
+					BufferedWriter bw = new BufferedWriter(fw);
+
+					for (int i : path) {
+						bw.write(String.valueOf(i));
+						bw.write('\n');
+					}
+					bw.close();
+
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-				bw.close();
-
-			} catch (IOException e) {
-				e.printStackTrace();
 			}
-
 		} catch (FileNotFoundException e) {
-			System.out.println("An error occurred.");
+			System.out.println("File not found or an error occurred while processing the file.");
 			e.printStackTrace();
 		}
 	}
