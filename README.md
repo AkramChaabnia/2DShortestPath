@@ -59,8 +59,7 @@ After completing the code, I have evaluated and compared the performances of Dij
 - Total nodes of the path: 63
 - Total time of the path: 1078.0
 
-Placeholder for Dijkstra screenshot: [Add Dijkstra Screenshot Here]
-![Dijkstra Screenshot](https://imgur.com/Lh8GAVd)
+![Dijkstra Screenshot](https://i.imgur.com/Lh8GAVd.png)
 
 ### A\* Evaluation
 
@@ -68,8 +67,7 @@ Placeholder for Dijkstra screenshot: [Add Dijkstra Screenshot Here]
 - Total nodes of the path: 69
 - Total time of the path: 1089.0
 
-Placeholder for A* screenshot: [Add A* Screenshot Here]
-![A* Screenshot](https://imgur.com/yGmndJM)
+![A* Screenshot](https://i.imgur.com/yGmndJM.png)
 
 Evaluation:
 
