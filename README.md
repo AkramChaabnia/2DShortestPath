@@ -130,17 +130,28 @@ Finish=<int,int: the coordinates (line, column) of the arrival point>
 
 You can define your own maps by modifying the one provided.
 
+## 🛠️ Prerequisites <a name = "prerequisites"></a>
+
+To run the project, ensure the following are installed:
+
+- [Java](https://www.java.com/en/download/): Download and install Java on your machine.
+- [JavaFX](https://openjfx.io/): Install JavaFX and configure it in your IDE if you're using one.
+
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-These instructions will guide you through the installation and execution of the project.
+To compile and execute the project:
 
-### Prerequisites
+1. Clone the repository or download the project files.
 
-To run the project, you need to have Java installed on your machine. You can download Java from [here](https://www.java.com/en/download/).
+### Using an IDE (Eclipse, VSCode, etc.)
 
-### Installing
+2. Set up the JavaFX environment in your IDE.
+3. Run the `App.java` file.
 
-To install the project, you can clone the repository or download the zip file from GitHub. Then, you can use your preferred IDE or the command line to compile and run the project.
+### Using Command Line
+
+2. Compile the Java code using the command: `javac --module-path /path/to/javafx-sdk/lib --add-modules javafx.controls App.java`.
+3. Run the compiled code using the command: `java --module-path /path/to/javafx-sdk/lib --add-modules javafx.controls App`.
 
 ## 🎈 Usage <a name="usage"></a>
 
