@@ -27,6 +27,7 @@
 - [Evaluation](#evaluation)
 - [Conclusion](#conclusion)
 - [Map Format](#map_format)
+- [Prerequisites](#prerequisites)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 - [Built Using](#built_using)
